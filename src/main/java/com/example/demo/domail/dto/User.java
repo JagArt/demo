@@ -1,10 +1,9 @@
-package com.example.demo.repository;
+package com.example.demo.domail.dto;
 
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.time.Period;
 
 @Data
 @Entity

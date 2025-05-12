@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.repository.User;
+import com.example.demo.domail.dto.User;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;

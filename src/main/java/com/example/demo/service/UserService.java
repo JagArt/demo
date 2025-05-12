@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.repository.User;
+import com.example.demo.domail.dto.User;
 
 import java.util.List;
 

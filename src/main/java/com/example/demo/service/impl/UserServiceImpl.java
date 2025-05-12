@@ -1,11 +1,10 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.repository.User;
+import com.example.demo.domail.dto.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.UserService;
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
