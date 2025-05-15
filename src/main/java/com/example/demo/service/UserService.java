@@ -1,15 +1,15 @@
 package com.example.demo.service;
 
-import com.example.demo.domail.dto.User;
+import com.example.demo.domain.entity.UserEntity;
 
 import java.util.List;
 
 public interface UserService {
-    List<User> findAll();
+    List<UserEntity> findAll();
 
-    User create(User user);
+    UserEntity create(UserEntity user);
 
     void delete(Long id);
 
-    User update(Long id, String email, String name);
+    UserEntity update(Long id, String email, String name);
 }

@@ -1,28 +1,36 @@
 package com.example.demo.controller;
 
-import com.example.demo.domail.dto.User;
+import com.example.demo.domain.dto.UserDto;
+import com.example.demo.domain.entity.UserEntity;
+import com.example.demo.mapper.Mapper;
 import com.example.demo.service.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/users")
 @AllArgsConstructor
 public class UserController {
 
-    @Autowired
-    private final UserService userService;
+    private UserService userService;
+    private Mapper<UserEntity, UserDto> userMapper;
 
     @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
+    public List<UserDto> findAll() {
+        List<UserEntity> userEntities =userService.findAll();
+        List<UserDto> userDtos = userEntities.stream()
+                .map(userMapper::mapTo)
+                .toList();
+        return userDtos;
     }
 
     @PostMapping
-    public User create(@RequestBody User user) {
+    public UserEntity create(@RequestBody UserEntity user) {
+//        UserDto userDto = userMapper.mapTo(user);
+
         return userService.create(user);
     }
 
@@ -32,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping(path = "{id}")
-    public User update(
+    public UserEntity update(
             @PathVariable Long id,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String name

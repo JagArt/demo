@@ -1,4 +1,4 @@
-package com.example.demo.domail.dto;
+package com.example.demo.domain.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -6,9 +6,12 @@ import lombok.*;
 import java.time.LocalDate;
 
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @Entity
 @Table(name = "users")
-public class User {
+public class UserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
