@@ -20,18 +20,17 @@ public class UserController {
 
     @GetMapping
     public List<UserDto> findAll() {
-        List<UserEntity> userEntities =userService.findAll();
-        List<UserDto> userDtos = userEntities.stream()
+        List<UserEntity> userEntities = userService.findAll();
+        return userEntities.stream()
                 .map(userMapper::mapTo)
                 .toList();
-        return userDtos;
     }
 
     @PostMapping
-    public UserEntity create(@RequestBody UserEntity user) {
-//        UserDto userDto = userMapper.mapTo(user);
-
-        return userService.create(user);
+    public UserDto create(@RequestBody UserDto userDto) {
+        UserEntity userEntity = userMapper.mapFrom(userDto);
+        UserEntity savedUserEntity = userService.create(userEntity);
+        return userMapper.mapTo(savedUserEntity);
     }
 
     @DeleteMapping(path = "{id}")
@@ -40,11 +39,12 @@ public class UserController {
     }
 
     @PutMapping(path = "{id}")
-    public UserEntity update(
+    public UserDto update(
             @PathVariable Long id,
             @RequestParam(required = false) String email,
             @RequestParam(required = false) String name
     ) {
-        return userService.update(id, email, name);
+        UserEntity updatedUserEntity = userService.update(id, email, name);
+        return userMapper.mapTo(updatedUserEntity);
     }
 }
